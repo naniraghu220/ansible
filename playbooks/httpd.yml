@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: install apache2
+      apt: name=apache2 update_cache=yes state=latest
+    - copy:
+       src: /etc/ansible/index.html
+       dest: /var/www/html
+       owner: test
+       group: test
+       mode: 0644
+
